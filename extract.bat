@@ -1,0 +1,1 @@
+yarn extract --out renderer/out data/HT/bin/mons_7003.bc

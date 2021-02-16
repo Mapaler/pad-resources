@@ -9,7 +9,9 @@ import { ISC } from '../models/isc';
 import { loadISA, loadISC } from '../models/spine';
 import { SpineAtlas } from '../models/spine-atlas';
 import { SpineSkeleton } from '../models/spine-skeleton';
+import { BC } from '../models/bc';
 import { TEX } from '../models/tex';
+const path = require('path');
 
 function writeFile(out: string | undefined, name: string, data: Buffer) {
   let path = name;
@@ -118,7 +120,12 @@ export async function main(args: string[]) {
   }
   for (const file of files) {
     const buf = readFileSync(file);
-    await extract(buf, parsedArgs.out);
+    if (path.extname(file) == '.bc'){
+      const bc = BC.load(buf);
+      await extract(bc.data, parsedArgs.out);
+    }else{
+      await extract(buf, parsedArgs.out);
+    }
   }
   return true;
 }
