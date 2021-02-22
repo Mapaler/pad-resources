@@ -21,9 +21,8 @@ export async function downloadBc(
     fileExist = fileStat.mtime >= lastUpdate && fileStat.size == entry.compressedSize;
   }
   if (fileExist) {
-    //console.log(`${key} 已经存在旧的`);
+    //已经存在的旧的
     data = await readFileSync(bcFileName);
-    utimesSync(bcFileName, lastUpdate, lastUpdate);
   } else {
     console.log(`Start Download ${key}.bc`);
     const resp = await Axios.get(`${key}.bc`, {
@@ -51,7 +50,8 @@ export async function downloadBc(
       binData = TEX.save(tex);
     }
   
-    await writeFileSync(join(binPath, `${key}.bin`), binData);
+    await writeFileSync(join(binPath, `${key}.bc`), binData);
+    utimesSync(join(binPath, `${key}.bc`), lastUpdate, lastUpdate);
   }
 
 }

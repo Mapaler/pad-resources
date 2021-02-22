@@ -17,12 +17,12 @@ export async function main(args: string[]) {
   const extlist = Extlist.load(await downloadExtlist(outPath, baseJson.extlist));
   writeFileSync(join(outPath, 'extlist.json'), formatJson(extlist));
 
-  const bcPath = mkdir(outPath, 'bc');
-  const binPath = mkdir(outPath, 'bin');
+  const compressed_bcPath = mkdir(outPath, 'compressed_bc');
+  const binPath = mkdir(outPath, 'bc');
   const cachePath = mkdir(outPath, 'cache');
 
   const downloadFns = extlist.entries.map((entry) => async () => {
-    await downloadBc(bcPath, binPath, cachePath, baseJson.extlist, entry);
+    await downloadBc(compressed_bcPath, binPath, cachePath, baseJson.extlist, entry);
   });
 
   let progress = 0;
