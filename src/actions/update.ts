@@ -5,7 +5,9 @@ import { downloadBaseJson } from '../downloader/base';
 import { downloadBc } from '../downloader/bc';
 import { downloadExtlist } from '../downloader/extlist';
 import { Extlist } from '../models/extlist';
-import { mkdir } from '../utils';
+import { mkdir, formatJson } from '../utils';
+import { writeFileSync } from 'fs';
+import { join } from 'path';
 
 export async function main(args: string[]) {
   console.log(`region: ${RegionID}`);
@@ -13,6 +15,7 @@ export async function main(args: string[]) {
 
   const baseJson = await downloadBaseJson(outPath);
   const extlist = Extlist.load(await downloadExtlist(outPath, baseJson.extlist));
+  writeFileSync(join(outPath, 'extlist.json'), formatJson(extlist));
 
   const bcPath = mkdir(outPath, 'bc');
   const binPath = mkdir(outPath, 'bin');
