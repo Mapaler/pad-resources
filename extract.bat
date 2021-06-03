@@ -1,1 +1,1 @@
-yarn extract --out renderer/out data/HT/bin/mons_7003.bc
+yarn extract --out renderer/out D:\CTFX\Downloads\Game\ÖÇÁúÃÔ³Ç\Puzzle-and-Dragons-Data-Files\mon2\mons_7233.bc
