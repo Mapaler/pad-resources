@@ -3,7 +3,7 @@ const path = require('path');
 const minimist = require('minimist');
 const webgl = require('gl');
 const sharp = require('sharp');
-const { spine } = require('./spine-webgl');
+const { spine } = require('./spine-webgl.js');
 
 async function main(args) {
   const parsedArgs = minimist(args);

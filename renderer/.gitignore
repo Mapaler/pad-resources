@@ -1,1 +1,8 @@
 spine-webgl.js
+out/
+png-sequences/
+png-single/
+*.exe
+*.mp4
+*.webm
+*.webp
